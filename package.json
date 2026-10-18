@@ -1,6 +1,10 @@
 {
   "name": "node-authentication",
   "main": "server.js",
+    "scripts": {
+    "start": "node server.js",
+    "savage": "node server.js --watch"
+  },
   "dependencies": {
     "bcrypt": "*",
     "bcrypt-nodejs": "^0.0.3",

@@ -2,27 +2,30 @@
 
 // set up ======================================================================
 // get all the tools we need
-var express  = require('express');
-var app      = express();
-var port     = process.env.PORT || 8080;
-const MongoClient = require('mongodb').MongoClient
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash    = require('connect-flash');
+let express  = require('express');
+let app      = express();
+let port     = process.env.PORT || 8080;
+//const MongoClient = require('mongodb').MongoClient // same same - lower lev - write req in mongo
+let mongoose = require('mongoose'); // same same
+let passport = require('passport');
+let flash    = require('connect-flash'); // attach info to session - middleware
 
-var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+let morgan       = require('morgan'); // logger - middleware
+let cookieParser = require('cookie-parser');
+let bodyParser   = require('body-parser'); // automatically included w express now - line can be deleted
+let session      = require('express-session');
 
-var configDB = require('./config/database.js');
-
-var db
+let configDB = require('./config/database.js');
+let db
 
 // configuration ===============================================================
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
+  //lhs is a imported function
+  // const lilFunction = require('./app/routes.js')
+  // lilFunction(app, passport, db);
+  
   require('./app/routes.js')(app, passport, db);
 }); // connect to our database
 
@@ -35,16 +38,19 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'))
 
-
+//transforms ejs into html
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
+//used for managing session information on an express object
+//changes propogate on express objects
 app.use(session({
     secret: 'rcbootcamp2021b', // session secret
     resave: true,
     saveUninitialized: true
 }));
-app.use(passport.initialize());
+//requests are ephemeral
+app.use(passport.initialize()); // dis why needs to be re-initialized on each request
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
