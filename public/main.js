@@ -55,9 +55,11 @@ Array.from(thumbDown).forEach(function(element) {
         })
       });
 });
-
+//stretch goal - don't refresh the page when you delete something
 Array.from(trash).forEach(function(element) {
       element.addEventListener('click', function(){
+        const id = this.parentNode.parentNode.childNodes[1].dataset.userId
+        console.log(id, "front")
         const name = this.parentNode.parentNode.childNodes[1].innerText
         const msg = this.parentNode.parentNode.childNodes[3].innerText
         fetch('messages', {
@@ -66,11 +68,11 @@ Array.from(trash).forEach(function(element) {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            'name': name,
-            'msg': msg
+            id
           })
         }).then(function (response) {
+          //use DOM .removeChild() instead of a window reload
           window.location.reload()
         })
-      });
+       });
 });

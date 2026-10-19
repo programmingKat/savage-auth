@@ -48,8 +48,6 @@ module.exports = function (app, passport, db, ObjectID) {
     db.collection('messages')
       .findOneAndUpdate({ 
         _id: new ObjectID(req.body.id)
-        // name: req.body.name, 
-        // msg: req.body.msg 
       }, {
         $inc: {
           thumbUp: 1, 
@@ -82,7 +80,12 @@ module.exports = function (app, passport, db, ObjectID) {
   })
 
   app.delete('/messages', (req, res) => {
-    db.collection('messages').findOneAndDelete({ name: req.body.name, msg: req.body.msg }, (err, result) => {
+    console.log(req.body.id)
+    db.collection('messages').findOneAndDelete({ 
+      _id: new ObjectID(req.body.id)
+      // name: req.body.name, 
+      // msg: req.body.msg 
+    }, (err, result) => {
       if (err) return res.send(500, err)
       res.send('Message deleted!')
     })
