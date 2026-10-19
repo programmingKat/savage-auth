@@ -1,4 +1,4 @@
-module.exports = function (app, passport, db) {
+module.exports = function (app, passport, db, ObjectID) {
 
   // normal routes ===============================================================
 
@@ -9,6 +9,7 @@ module.exports = function (app, passport, db) {
 
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
+
     db.collection('messages').find().toArray((err, result) => {
       if (err) return console.log(err)
       res.render('profile.ejs', {
@@ -42,13 +43,16 @@ module.exports = function (app, passport, db) {
   })
 
   app.put('/thumbUp', (req, res) => {
+    console.log(req.body, "body")
+    console.log(req.body.id, "req.body.id")
     db.collection('messages')
       .findOneAndUpdate({ 
-        name: req.body.name, 
-        msg: req.body.msg 
+        _id: new ObjectID(req.body.id)
+        // name: req.body.name, 
+        // msg: req.body.msg 
       }, {
-        $set: {
-          thumbUp: req.body.thumbUp + 1, 
+        $inc: {
+          thumbUp: 1, 
         }
       }, {
         sort: { _id: -1 },

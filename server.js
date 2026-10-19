@@ -5,7 +5,7 @@
 let express  = require('express');
 let app      = express();
 let port     = process.env.PORT || 8080;
-//const MongoClient = require('mongodb').MongoClient // same same - lower lev - write req in mongo
+const {ObjectID} = require('mongodb') // same same - lower lev - write req in mongo
 let mongoose = require('mongoose'); // same same
 let passport = require('passport');
 let flash    = require('connect-flash'); // attach info to session - middleware
@@ -26,7 +26,7 @@ mongoose.connect(configDB.url, (err, database) => {
   // const lilFunction = require('./app/routes.js')
   // lilFunction(app, passport, db);
   
-  require('./app/routes.js')(app, passport, db);
+  require('./app/routes.js')(app, passport, db, ObjectID);
 }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration

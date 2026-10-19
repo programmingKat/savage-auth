@@ -4,18 +4,18 @@ let trash = document.getElementsByClassName("fa-trash");
 
 Array.from(thumbUp).forEach(function(element) {
       element.addEventListener('click', function(){
+        const id = this.parentNode.parentNode.childNodes[1].dataset.userId
         const name = this.parentNode.parentNode.childNodes[1].innerText
         const msg = this.parentNode.parentNode.childNodes[3].innerText
         const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-        const thumbDown = parseFloat(this.parentNode.parentNode.childNodes[6].innerText)
         fetch('thumbUp', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            'name': name,
-            'msg': msg,
-            'thumbUp':thumbUp,
-            'thumbDown': thumbDown
+            //in js if the key and the value are the same you do not 
+            //need to define them using the 'key':value, syntax
+            id, 
+            thumbUp
           })
         })
         .then(response => {
@@ -25,7 +25,7 @@ Array.from(thumbUp).forEach(function(element) {
           console.log(data)
           window.location.reload(true)
         })
-      });
+       });
 });
 
 Array.from(thumbDown).forEach(function(element) {
