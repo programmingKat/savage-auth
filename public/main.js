@@ -5,8 +5,6 @@ let trash = document.getElementsByClassName("fa-trash");
 Array.from(thumbUp).forEach(function(element) {
       element.addEventListener('click', function(){
         const id = this.parentNode.parentNode.childNodes[1].dataset.userId
-        const name = this.parentNode.parentNode.childNodes[1].innerText
-        const msg = this.parentNode.parentNode.childNodes[3].innerText
         const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
         fetch('thumbUp', {
           method: 'put',
@@ -30,20 +28,14 @@ Array.from(thumbUp).forEach(function(element) {
 
 Array.from(thumbDown).forEach(function(element) {
       element.addEventListener('click', function(){
-        const name = this.parentNode.parentNode.childNodes[1].innerText
-        const msg = this.parentNode.parentNode.childNodes[3].innerText
-        console.log(this.parentNode)
-        console.log(this.parentNode.parentNode)
+        const id = this.parentNode.parentNode.childNodes[1].dataset.userId
         const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
         const thumbDown = parseFloat(this.parentNode.parentNode.childNodes[6].innerText)
         fetch('thumbDown', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            'name': name,
-            'msg': msg,
-            'thumbUp': thumbUp,
-            'thumbDown': thumbDown
+            id, thumbUp, thumbDown
           })
         })
         .then(response => {

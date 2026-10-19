@@ -64,11 +64,10 @@ module.exports = function (app, passport, db, ObjectID) {
     app.put('/thumbDown', (req, res) => {
     db.collection('messages')
       .findOneAndUpdate({ 
-        name: req.body.name, 
-        msg: req.body.msg 
+        _id: new ObjectID(req.body.id)
       }, {
-        $set: {
-          thumbUp: req.body.thumbUp-1
+        $inc: {
+          thumbUp: -1
         }
       }, {
         sort: { _id: -1 },
