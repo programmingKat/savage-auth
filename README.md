@@ -10,7 +10,7 @@ I built this to practice full-stack CRUD with authentication on top of an Expres
 - **Front end:** EJS templates, CSS, JavaScript (Fetch API)
 - **Back end:** Node.js, Express, Passport (local strategy), express-session
 - **Database:** MongoDB (Mongoose)
-- **Hosting:** [GitHub Pages / Netlify / Vercel / Render]
+- **Hosting:** Render
 
 ## How to Use
 
