@@ -1,10 +1,5 @@
 # Savage Auth
-
 A message board with user accounts where signed-in users post messages and vote them up or down.
-
-**Live app:** [https://your-link-here](https://your-link-here)
-
-![Screenshot of the main screen](./screenshots/main.png)
 
 ## Goal
 
@@ -19,7 +14,7 @@ I built this to practice full-stack CRUD with authentication on top of an Expres
 
 ## How to Use
 
-1. Open the [live app](https://your-link-here).
+1. Open the [live app](https://savage-auth-2t2y.onrender.com/).
 2. Sign up with an email and password, or log in.
 3. On your profile, add a message.
 4. Use the thumbs up and thumbs down icons to vote on messages, or the trash icon to delete one.
@@ -35,13 +30,14 @@ I built this to practice full-stack CRUD with authentication on top of an Expres
 1. run `node server.js`
 2. Navigate to `localhost:8080`
 
-## Live App
-
-**Link:** [https://your-link-here](https://your-link-here)
+**Live app:**
+[Live Link](https://savage-auth-2t2y.onrender.com/)
 
 | Login | Profile and Messages |
-| --- | --- |
-| ![Login page](./screenshots/one.png) | ![Profile page with messages](./screenshots/two.png) |
+<img width="1260" height="541" alt="image" src="https://github.com/user-attachments/assets/38d6c4ac-f275-4cba-ab10-86c87c250efa" />
+<img width="1271" height="543" alt="image" src="https://github.com/user-attachments/assets/28bf1893-6eff-46bc-8879-37d808325420" />
+<img width="1276" height="542" alt="image" src="https://github.com/user-attachments/assets/d6193325-23d5-41ac-8421-9aa60c637814" />
+<img width="1261" height="551" alt="image" src="https://github.com/user-attachments/assets/5952d381-2e46-4f20-8881-25f298bf5829" />
 
 ## Future Improvements
 
